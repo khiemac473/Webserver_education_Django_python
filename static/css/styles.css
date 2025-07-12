@@ -1,0 +1,83 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Roboto', sans-serif; background-color: #f8fafc; color: #333; line-height: 1.6; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+header { background-color: #1e40af; color: white; padding: 15px 0; }
+
+nav { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; }
+
+.nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 1rem; }
+.nav-links a:hover { text-decoration: underline; }
+
+main { padding: 20px 0; }
+
+h2 { font-size: 1.8rem; margin-bottom: 20px; color: #1e40af; }
+h3 { font-size: 1.4rem; margin: 20px 0 10px; color: #1e40af; }
+
+.btn { display: inline-block; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 500; transition: background-color 0.3s; }
+.btn-primary { background-color: #1e40af; color: white; }
+.btn-primary:hover { background-color: #1e3a8a; }
+.btn-secondary { background-color: #6b7280; color: white; }
+.btn-secondary:hover { background-color: #4b5563; }
+
+.auth-container { max-width: 400px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+
+.auth-form { display: flex; flex-direction: column; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+.form-group input { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 5px; font-size: 1rem; }
+
+.error-message { color: #dc2626; margin-bottom: 15px; font-size: 0.9rem; }
+
+.home-container, .course-container, .chapter-container, .lesson-container, .page-container, .test-container, .result-container {
+    background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info { color: #4b5563; margin-bottom: 20px; }
+
+.course-list, .chapter-list, .lesson-list, .page-list, .result-list { display: grid; gap: 15px; }
+
+.course-card, .chapter-card, .lesson-card, .page-card, .result-card {
+    background: #f1f5f9; padding: 15px; border-radius: 8px; transition: transform 0.2s;
+}
+.course-card:hover, .chapter-card:hover, .lesson-card:hover, .page-card:hover { transform: translateY(-3px); }
+
+.course-card a, .chapter-card a, .lesson-card a, .page-card a {
+    color: #1e40af; text-decoration: none; font-weight: 500;
+}
+.course-card p, .result-card p {
+    color: #4b5563; font-size: 0.9rem;
+}
+
+.page-content { margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px; }
+
+.test-form { display: flex; flex-direction: column; gap: 20px; }
+
+.question-card { background: #f1f5f9; padding: 20px; border-radius: 8px; }
+.question-card p { margin-bottom: 10px; font-weight: 500; }
+
+.question-image { max-width: 100%; height: auto; margin-bottom: 10px; border-radius: 5px; }
+
+.options { display: flex; flex-direction: column; gap: 10px; }
+.options label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+
+.result-actions { margin-top: 20px; display: flex; gap: 10px; }
+
+/* Breadcrumb styles */
+.breadcrumb { margin-bottom: 20px; font-size: 1rem; color: #4b5563; }
+.breadcrumb a { color: #1e40af; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { color: #333; font-weight: 500; }
+.breadcrumb .separator { margin: 0 8px; color: #6b7280; }
+
+@media (max-width: 768px) {
+    .container { padding: 0 15px; }
+    .auth-container { margin: 20px; padding: 20px; }
+    .course-list, .chapter-list, .lesson-list, .page-list { grid-template-columns: 1fr; }
+    .breadcrumb { font-size: 0.9rem; }
+}

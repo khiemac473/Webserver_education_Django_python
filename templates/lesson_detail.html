@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ lesson.get_title }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <a href="{% url 'courses:home' %}">Home</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:course_detail' lesson.chuong_hoc_id.khoa_hoc_id.id %}">{{ lesson.chuong_hoc_id.khoa_hoc_id.ten_khoa_hoc }}</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:chapter_detail' lesson.chuong_hoc_id.id %}">{{ lesson.chuong_hoc_id.ten_chuong }}</a>
+    <span class="separator">/</span>
+    <span>{{ lesson.get_title }}</span>
+</div>
+<div class="lesson-container">
+    <h2>{{ lesson.get_title }}</h2>
+    <h3>Trang nội dung</h3>
+    <div class="page-list">
+        {% for page in pages %}
+            <div class="page-card">
+                <a href="{% url 'courses:page_content' page.id %}">Trang {{ page.so_trang }}: {{ page.tieu_de }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}{{ test.ten_bai_thi }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <a href="{% url 'courses:home' %}">Home</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:course_detail' test.khoa_hoc_id.id %}">{{ test.khoa_hoc_id.ten_khoa_hoc }}</a>
+    {% if test.loai == 'chapter_test' %}
+        <span class="separator">/</span>
+        <a href="{% url 'courses:chapter_detail' test.chuong_hoc_id.id %}">{{ test.chuong_hoc_id.ten_chuong }}</a>
+    {% endif %}
+    <span class="separator">/</span>
+    <span>{{ test.ten_bai_thi }}</span>
+</div>
+<div class="test-container">
+    <h2>{{ test.ten_bai_thi }}</h2>
+    <form method="post" class="test-form">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question-card">
+                <p><strong>Câu {{ forloop.counter }}:</strong> {{ question.nhch_id.cau_hoi }}</p>
+                {% if question.nhch_id.hinh_anh %}
+                    <img src="{{ question.nhch_id.hinh_anh }}" alt="Hình ảnh" class="question-image">
+                {% endif %}
+                <div class="options">
+                    <label><input type="radio" name="question_{{ question.id }}" value="A" required> {{ question.nhch_id.dap_an_a }}</label>
+                    <label><input type="radio" name="question_{{ question.id }}" value="B"> {{ question.nhch_id.dap_an_b }}</label>
+                    {% if question.nhch_id.dap_an_c %}
+                        <label><input type="radio" name="question_{{ question.id }}" value="C"> {{ question.nhch_id.dap_an_c }}</label>
+                    {% endif %}
+                    {% if question.nhch_id.dap_an_d %}
+                        <label><input type="radio" name="question_{{ question.id }}" value="D"> {{ question.nhch_id.dap_an_d }}</label>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Nộp bài</button>
+    </form>
+</div>
+{% endblock %}

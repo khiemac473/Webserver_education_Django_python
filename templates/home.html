@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Trang chủ{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <span>Home</span>
+</div>
+<div class="home-container">
+    <h2>Xin chào, {{ user.ho_ten }}</h2>
+    <p class="user-info">Email: {{ user.email }}</p>
+    <h3>Khóa học của bạn</h3>
+    <div class="course-list">
+        {% for course in courses %}
+            <div class="course-card">
+                <a href="{% url 'courses:course_detail' course.id %}">{{ course.ten_khoa_hoc }}</a>
+                <p>Quyền: {% for perm in permissions %}{% if perm.khoa_hoc_id.id == course.id %}{{ perm.quyen_id.ten_quyen }}{% endif %}{% endfor %}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

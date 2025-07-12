@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Kết quả {{ test.ten_bai_thi }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <a href="{% url 'courses:home' %}">Home</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:course_detail' test.khoa_hoc_id.id %}">{{ test.khoa_hoc_id.ten_khoa_hoc }}</a>
+    {% if test.loai == 'chapter_test' %}
+        <span class="separator">/</span>
+        <a href="{% url 'courses:chapter_detail' test.chuong_hoc_id.id %}">{{ test.chuong_hoc_id.ten_chuong }}</a>
+    {% endif %}
+    <span class="separator">/</span>
+    <span>{{ test.ten_bai_thi }} - Kết quả</span>
+</div>
+<div class="result-container">
+    <h2>Kết quả {{ test.ten_bai_thi }}</h2>
+    <div class="result-card">
+        <p><strong>Điểm:</strong> {{ result.diem }} / 100</p>
+        <p><strong>Lần thi:</strong> {{ result.lan_thi }}</p>
+        <p><strong>Thời gian:</strong> {{ result.ngay_thi|date:"d/m/Y H:i" }}</p>
+    </div>
+    <div class="result-actions">
+        <a href="{% url 'courses:retake_test' test.id %}" class="btn btn-primary">Làm lại</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.ten_khoa_hoc }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <a href="{% url 'courses:home' %}">Home</a>
+    <span class="separator">/</span>
+    <span>{{ course.ten_khoa_hoc }}</span>
+</div>
+<div class="course-container">
+    <h2>{{ course.ten_khoa_hoc }}</h2>
+    <p>{{ course.mo_ta }}</p>
+    <h3>Danh sách chương</h3>
+    <div class="chapter-list">
+        {% for chapter in chapters %}
+            <div class="chapter-card">
+                <a href="{% url 'courses:chapter_detail' chapter.id %}">{{ chapter.ten_chuong }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% if final_test %}
+        <h3>Bài kiểm tra cuối khóa</h3>
+        <a href="{% url 'courses:take_test' final_test.id %}" class="btn btn-primary">Làm bài</a>
+        {% if results %}
+            <h3>Kết quả kiểm tra cuối khóa</h3>
+            <div class="result-list">
+                {% for result in results %}
+                    <div class="result-card">
+                        <p>Lần {{ result.lan_thi }}: {{ result.diem }} điểm ({{ result.ngay_thi|date:"d/m/Y H:i" }})</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

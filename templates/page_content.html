@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.tieu_de }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+    <a href="{% url 'courses:home' %}">Home</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:course_detail' page.bai_hoc_id.chuong_hoc_id.khoa_hoc_id.id %}">{{ page.bai_hoc_id.chuong_hoc_id.khoa_hoc_id.ten_khoa_hoc }}</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:chapter_detail' page.bai_hoc_id.chuong_hoc_id.id %}">{{ page.bai_hoc_id.chuong_hoc_id.ten_chuong }}</a>
+    <span class="separator">/</span>
+    <a href="{% url 'courses:lesson_detail' page.bai_hoc_id.id %}">{{ page.bai_hoc_id.get_title }}</a>
+    <span class="separator">/</span>
+    <span>{{ page.tieu_de }}</span>
+</div>
+<div class="page-container">
+    <h2>{{ page.tieu_de }}</h2>
+    <div class="page-content">{{ page.noi_dung|safe }}</div>
+    {% if page.duong_dan %}
+        <a href="{{ page.duong_dan }}" class="btn btn-secondary">Tài liệu bổ sung</a>
+    {% endif %}
+</div>
+{% endblock %}
